@@ -7,11 +7,19 @@ import dataaccess.UserDB;
 import models.Role;
 
 public class UserService {
-    
+
     public User get(String email) throws Exception {
         UserDB db = new UserDB();
         User user = db.getUser(email);
         return user;
+    }
+
+    public User getByUUID(String uuid) {
+        
+        UserDB udb = new UserDB();
+        User u = udb.getByUUID(uuid);
+        
+        return u;
     }
 
     public List<User> getAll() throws Exception {
@@ -30,7 +38,7 @@ public class UserService {
     }
 
     public void delete(String email) throws Exception {
-       UserDB db = new UserDB();
+        UserDB db = new UserDB();
         User user = db.getUser(email);
         user.setActive(false);
         db.update(user);

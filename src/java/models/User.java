@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author awarsyle
+ * @author 794473
  */
 @Entity
 @Table(name = "user_table")
@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active")
     , @NamedQuery(name = "User.findByFname", query = "SELECT u FROM User u WHERE u.fname = :fname")
     , @NamedQuery(name = "User.findByLname", query = "SELECT u FROM User u WHERE u.lname = :lname")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
+    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.findByResetpassworduuid", query = "SELECT u FROM User u WHERE u.resetpassworduuid = :resetpassworduuid")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,6 +56,8 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
+    @Column(name = "resetpassworduuid")
+    private String resetpassworduuid;
     @JoinColumn(name = "role", referencedColumnName = "RoleID")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Role role;
@@ -114,6 +117,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getResetpassworduuid() {
+        return resetpassworduuid;
+    }
+
+    public void setResetpassworduuid(String resetpassworduuid) {
+        this.resetpassworduuid = resetpassworduuid;
     }
 
     public Role getRole() {

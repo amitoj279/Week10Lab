@@ -19,7 +19,7 @@
             <input type="submit" value="Login">
             
         </form>
-        
+        <a href="reset">Reset Password</a>
             
     </body>
 </html>

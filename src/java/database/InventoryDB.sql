@@ -20,6 +20,7 @@ CREATE TABLE if not exists user_table (
     lname VARCHAR(20) NOT NULL,
     password VARCHAR(20) NOT NULL,
     `role` INT(11) NOT NULL,
+    resetpassworduuid VARCHAR(50),
 
     CONSTRAINT user_email_pk PRIMARY KEY (email),
     CONSTRAINT `FK_User_Role` FOREIGN KEY (`Role`) REFERENCES `role_table` (`RoleID`) ON DELETE RESTRICT ON UPDATE RESTRICT

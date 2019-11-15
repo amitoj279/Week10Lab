@@ -1,14 +1,8 @@
 package dataaccess;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+
 import models.User;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import models.Role;
@@ -73,6 +67,20 @@ public class UserDB {
          try {
              User user = em.find(User.class, email);
              return user;
+         } finally {
+             em.close();
+         }
+    }
+    
+    public User getByUUID(String uuid){
+        
+         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+         try {
+             
+            User u = em.createNamedQuery("User.findByResetpassworduuid", User.class)
+                    .setParameter("resetpassworduuid", uuid).getSingleResult();
+            
+            return u;
          } finally {
              em.close();
          }
